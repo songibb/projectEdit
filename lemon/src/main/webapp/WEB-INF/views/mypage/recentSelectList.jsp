@@ -1,0 +1,54 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ page import = "co.market.lemon.mypage.command.CookieCreate" %>
+
+<!DOCTYPE html>
+<html>
+<head>
+<link href="../../css/board.css" rel="stylesheet">
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<div>
+		<jsp:include page="mypageMenu.jsp"></jsp:include>
+	</div> 
+	
+	<section class="notice">
+		<div class="page-title">
+			<div class="container">
+				<h3>최근 본 상품</h3>
+			</div>
+		</div>
+
+		<div id="board-list">
+			<div class="container">
+				<form id="frm" method="post">
+					<c:forEach items="${recentList}" var="r">				
+						<div>
+							<div><img src="">이미지</div>
+							<div><p><a href="#">${r.productTitle}</a></p></div>
+							<div><button id="deleteRecent" onclick="fnDelete()">삭제</button></div>
+							<input type="hidden" name="productId" value="${r.productId}" >
+						</div>				
+					</c:forEach>
+				</form>
+				<c:if test="${empty recentList}">
+					<p>최근 본 상품이 없습니다.</p>
+				</c:if>
+				
+			</div>
+		</div>
+		
+	</section>
+
+	<script type="text/javascript">
+		function fnDelete(){
+			let frm = document.getElementById("frm");
+			frm.action="deleteCookie.do";
+			frm.submit();
+		}
+	</script>
+</body>
+</html>
