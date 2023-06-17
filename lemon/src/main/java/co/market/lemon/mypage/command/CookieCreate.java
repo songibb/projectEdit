@@ -17,7 +17,7 @@ public class CookieCreate{
 		productCookie.setPath("/");
 		productCookie.setMaxAge(24*60*60);
 		response.addCookie(productCookie);
-		//기존에 동일한 쿠키 이름이면 대체됨 -> "productCId"+vo.getProductId()
+		//기존에 동일한 쿠키 이름이면 대체됨 -> 번호 붙이기 "productCId"+vo.getProductId()
 		
 	}	
 

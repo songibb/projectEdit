@@ -37,6 +37,7 @@ import co.market.lemon.mypage.command.MemberUpdate;
 import co.market.lemon.mypage.command.MemberUpdateForm;
 import co.market.lemon.mypage.command.Mypage;
 import co.market.lemon.mypage.command.RecentSelectList;
+import co.market.lemon.mypage.command.SellSelect;
 import co.market.lemon.mypage.command.SellSelectList;
 import co.market.lemon.notice.command.NoticeDelete;
 import co.market.lemon.notice.command.NoticeInsert;
@@ -132,6 +133,7 @@ public class FrontController extends HttpServlet {
 		map.put("/memberDelete.do", new MemberDelete());  //삭제 실행
 		
 		map.put("/sellSelectList.do", new SellSelectList());  //판매 내역
+		map.put("/sellSelect.do", new SellSelect());  //판매 내역 검색
 		map.put("/heartSelectList.do", new HeartSelectList());  //찜한 상품
 		map.put("/recentSelectList.do", new RecentSelectList());  //최근 본 상품
 		

@@ -51,7 +51,8 @@ public class ProductSelect implements Command {
 		int heartVal = hs.selectHeart(hvo);
 		request.setAttribute("heartVal", heartVal);
 
-		
+		// 최근 본 상품 불러오기
+		//쿠키생성
 		CookieCreate cc = new CookieCreate();
 		cc.exec(request, response);
 

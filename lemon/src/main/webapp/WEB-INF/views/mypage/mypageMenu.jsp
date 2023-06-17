@@ -5,6 +5,12 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style>
+#myPageMenu{
+	width: 100px;
+	height: 50px;
+}
+</style>
 </head>
 <body>
 	<div id="myPageMenu">

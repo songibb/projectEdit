@@ -2,6 +2,7 @@ package co.market.lemon.mypage.serviceImpl;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.session.SqlSession;
 
 import co.market.lemon.common.DataSource;
@@ -19,6 +20,12 @@ public class MypageServiceImpl implements MypageService {
 		
 		return map.sellSelectList(name);
 	}
+	
+	@Override
+	public List<MypageVO> sellSelect(@Param("memberName") String name, @Param("productSearch")String search) {
+		
+		return map.sellSelect(name, search);
+	}
 
 	@Override
 	public List<MypageVO> heartSelectList(String id) {
@@ -31,6 +38,8 @@ public class MypageServiceImpl implements MypageService {
 		
 		return map.recentSelectList(no);
 	}
+
+	
 
 
 

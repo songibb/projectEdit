@@ -9,6 +9,16 @@
 		ORDER BY PRODUCT_ID
 	</select>
 	
+	<select id="sellSelect" resultType="co.market.lemon.mypage.service.MypageVO">
+		SELECT PRODUCT_ID, PRODUCT_CATEGORY, PRODUCT_TITLE, PRODUCT_WRITER, PRODUCT_STATE, PRODUCT_WDATE
+		FROM PRODUCT
+		WHERE PRODUCT_WRITER = #{memberName} 
+			AND PRODUCT_TITLE LIKE '%' || #{productSearch} || '%'
+			OR PRODUCT_CATEGORY LIKE '%' || #{productSearch} || '%'
+			OR PRODUCT_STATE LIKE '%' || #{productSearch} || '%'
+		ORDER BY PRODUCT_ID
+	</select>
+	
 	<select id="heartSelectList" resultType="co.market.lemon.mypage.service.MypageVO" parameterType="String">
 		SELECT H.PRODUCT_ID, P.PRODUCT_CATEGORY, P.PRODUCT_INFO, P.PRODUCT_TITLE, P.PRODUCT_WRITER, P.PRODUCT_STATE, P.PRODUCT_WDATE
 		FROM HEART H JOIN PRODUCT P ON H.PRODUCT_ID = P.PRODUCT_ID
@@ -21,6 +31,8 @@
 		FROM PRODUCT
 		WHERE PRODUCT_id = #{value}
 	</select>
+	
+	
 	
 	
 	

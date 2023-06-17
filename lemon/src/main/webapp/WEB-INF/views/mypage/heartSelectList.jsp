@@ -20,20 +20,6 @@
 			</div>
 		</div>
 
-		<div id="board-search">
-			<div class="container">
-				<div class="search-window">
-					<form id="frm" action="" method="post">
-						<div class="search-wrap">
-							<label for="search" class="blind"></label> <input
-								type="search" id="search" name="memberId" placeholder="조회">
-							<button type="submit" class="btn btn-dark"
-								style="margin-right: 0px; margin-bottom: 0px">조회</button>
-						</div>
-					</form>
-				</div>
-			</div>
-		</div>
 
 		<div id="board-list">
 			<div class="container">
