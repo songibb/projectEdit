@@ -7,9 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 import co.market.lemon.product.service.ProductVO;
 
 public class CookieCreate{
-	
 
-	
 	public void exec(HttpServletRequest request, HttpServletResponse response) {
 		ProductVO vo = new ProductVO();
 		vo.setProductId(Integer.parseInt(request.getParameter("productId")));
