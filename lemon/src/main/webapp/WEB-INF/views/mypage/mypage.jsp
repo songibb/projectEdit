@@ -3,40 +3,53 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link href="../../css/board.css" rel="stylesheet">
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
-ul {
-	list-style-type: none;
+#box{
+	display: flex;
+	justify-content: center;
 }
-ul li {
-	margin: 10px;
+.container{
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+
 }
-
-#left{
-	float: left;
+.contaier a {
+	margin: 50px;
+	padding: 50px;
 }
-
-
 
 </style>
 </head>
 <body>
-	<div align="center">
-		<div><h1>마이페이지</h1></div>
-		<div>
-			<div class="top">
-				<ul>
-					<li><a href="#">${name}</a></li>
-					<li><a href="#">${grade}</a></li>
-					<li><a href="memberUpdateForm.do">회원정보수정</a></li>
-				</ul>
+	<section class="notice">
+		<div class="page-title">
+			<div class="container">
+				<h3>마이페이지</h3>
 			</div>
+		</div>
 	
-			<div id="left">
+		<div id="box">
+
+			<div>
 				<jsp:include page="mypageMenu.jsp"></jsp:include>
 			</div> 
+			
+			
+			<div id="board-list">
+				<div class="container">
+				<a href="#">${name}</a>
+				<a href="#">${grade}</a>
+				<a href="memberUpdateForm.do">회원정보수정</a>
+				</div>
+			</div>
+			
 		</div>
-	</div>
+	
+	
+	</section>
 </body>
 </html>
