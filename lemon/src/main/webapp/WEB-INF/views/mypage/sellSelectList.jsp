@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,6 +12,26 @@
 #box{
 	display: flex;
 	justify-content: center;
+}
+
+.pager{
+	display:flex;
+	justify-content: center;
+}
+
+.pager .pageButton{
+    display: inline-block;
+    padding: 5px 14px;
+    background-color: #fff;
+}
+.listCenter {
+	
+    list-style:none;
+}
+ 
+.listCenter li {
+	margin-left: 5px;
+    margin-right: 5px;
 }
 </style>
 </head>
@@ -32,10 +53,11 @@
 				<div id="board-search">
 					<div class="container">
 						<div class="search-window">
-							<form id="frm" action="sellSelect.do" method="post">
+							<form id="frm" action="sellSelect.do" method="get">
 								<div class="search-wrap">
-									<label for="sproductearch" class="blind"></label> 
-									<input type="search" id="productsearch" name="productSearch" placeholder="검색할 내용을 입력하세요">
+									<label for="productSearch" class="blind"></label> 
+									<input type="search" id="productSearch" name="productSearch" 
+											placeholder="검색할 내용을 입력하세요" value="${param.productSearch}">
 									<button type="submit" class="btn btn-dark"
 										style="margin-right: 0px; margin-bottom: 0px">검색</button>
 								</div>
@@ -75,9 +97,48 @@
 						</table>
 					</div>
 				</div>
+				
+				
+				<c:set var="page" value="${(empty param.page)? 1 : param.page}"/>
+				<c:set var="startNum" value="${page-(page-1)%5}"/>
+				<c:set var="lastNum" value="${fn:substringBefore(Math.ceil(fn:length(sellList2)/10), '.')}"/>
+					
+				<div align="right">
+					<div style="margin-right: 30px;"><span>${(empty param.page)? 1 : param.page}</span> / ${lastNum} pages</div>
+				</div>
+				
+				<div align="center" class="pager">				
+					<div class="pageButton">
+						<c:if test="${startNum>1}">
+							<a href="?page=${startNum-1}&productSearch=${param.productSearch}">이전</a>
+						</c:if>
+						<c:if test="${startNum<=1}">
+							<span onclick="alert('이전 페이지가 없습니다.')">이전</span>
+						</c:if>
+					</div>
+	
+					<ul class="listCenter">
+						<c:forEach var="i" begin="0" end="4">
+							<c:if test="${(startNum+i)<=lastNum}">
+								<li><a style="background-color: ${(page==(startNum+i))?'#595959':''};" href="?page=${startNum+i}&productSearch=${param.productSearch}">${startNum+i}</a></li>
+							</c:if>
+						</c:forEach>
+					</ul>
+			
+					<div class="pageButton">
+						<c:if test="${(startNum+4)<lastNum}">
+							<a href="?page=${startNum+5}&productSearch=">다음</a>
+						</c:if>
+						<c:if test="${(startNum+4)>=lastNum}">
+							<span onclick="alert('다음 페이지가 없습니다.')">다음</span>
+						</c:if>
+					</div>	
+				</div>
+				
 			</div>	
 			
 		</div>
+		
 		
 		<div>
 			<jsp:include page="clickProductSelect.jsp"></jsp:include>

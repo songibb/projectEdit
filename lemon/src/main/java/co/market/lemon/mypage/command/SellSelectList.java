@@ -23,10 +23,18 @@ public class SellSelectList implements Command {
 
 		MypageService ms = new MypageServiceImpl();
 		List<MypageVO> sellList = new ArrayList<MypageVO>();
+		List<MypageVO> sellList2 = new ArrayList<MypageVO>();
+		int page = 1;
+		if(request.getParameter("page") != null) {
+			page = Integer.parseInt(request.getParameter("page"));
+		} 
 		
 		
-		sellList = ms.sellSelectList(memberName);
+		sellList = ms.sellSelectPaging(memberName, page);
 		request.setAttribute("sellList", sellList);	
+		
+		sellList2 = ms.sellSelectList(memberName);
+		request.setAttribute("sellList2", sellList2);	
 		
 		return "mypage/sellSelectList";
 	}

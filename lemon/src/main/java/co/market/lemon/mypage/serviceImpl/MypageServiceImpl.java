@@ -22,9 +22,15 @@ public class MypageServiceImpl implements MypageService {
 	}
 	
 	@Override
-	public List<MypageVO> sellSelect(@Param("memberName") String name, @Param("productSearch")String search) {
+	public List<MypageVO> sellSelectPaging(String name, int page) {
+
+		return map.sellSelectPaging(name, page);
+	}
+	
+	@Override
+	public List<MypageVO> sellSelect(@Param("memberName") String name, @Param("productSearch")String search, @Param("page") int page) {
 		
-		return map.sellSelect(name, search);
+		return map.sellSelect(name, search, page);
 	}
 
 	@Override
@@ -38,6 +44,8 @@ public class MypageServiceImpl implements MypageService {
 		
 		return map.recentSelectList(no);
 	}
+
+	
 
 	
 
