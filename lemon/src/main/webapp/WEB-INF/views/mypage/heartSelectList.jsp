@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link href="../../css/board.css" rel="stylesheet">
+<link href="css/board.css" rel="stylesheet">
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
@@ -13,10 +13,10 @@
 	justify-content: center;
 }
 </style>
+
 </head>
 <body>
 	
-
 	<section class="notice">
 		<div class="page-title">
 			<div class="container">
@@ -33,11 +33,9 @@
 				<div class="container">
 					<table class="board-table">
 						<thead>
-							<tr>
-								<th scope="col">이미지</th>
-								<th scope="col">카테고리</th>
-								<th scope="col"></th>
-								<th scope="col">제목</th>
+							<tr>				
+								<th scope="col" colspan="2">카테고리</th>
+								<th scope="col" colspan="2">게시글</th>
 								<th scope="col">작성자</th>
 								<th scope="col">거래상태</th>
 							</tr>
@@ -45,10 +43,10 @@
 						<tbody>
 							<c:forEach items="${heartList}" var="h">
 								<tr>
-									<td>이미지</td>
 									<td>${h.productCategory}</td>
-									<td>${h.productInfo}</td>	
-									<td><a href="#">${h.productTitle}</a></td>
+									<td>${h.productInfo}</td>
+									<td><div class='myDiv' onclick='productChoice(${h.productId})'>이미지</div></td>									
+									<td><div class='myDiv' onclick='productChoice(${h.productId})'>${h.productTitle}</div></td>
 									<td>${h.productWriter}</td>
 									<td>${h.productState}</td>
 								</tr>
@@ -63,6 +61,10 @@
 				</div>
 			</div>
 		</div>
+		
+		<div>
+			<jsp:include page="clickProductSelect.jsp"></jsp:include>
+		</div> 
 	</section>
 	
 </body>

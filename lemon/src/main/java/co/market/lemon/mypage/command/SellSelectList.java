@@ -21,10 +21,9 @@ public class SellSelectList implements Command {
 		vo.setMemberName((String) session.getAttribute("name"));
 		String memberName = vo.getMemberName();
 
-			
 		MypageService ms = new MypageServiceImpl();
 		List<MypageVO> sellList = new ArrayList<MypageVO>();
-
+		
 		
 		sellList = ms.sellSelectList(memberName);
 		request.setAttribute("sellList", sellList);	

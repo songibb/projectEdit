@@ -186,19 +186,48 @@
 		
 	<script type="text/javascript">	    
 	    let heart = document.getElementById("heart");
-	   	heart.addEventListener("click", clickHeart);
+//	   	heart.addEventListener("click", clickHeart);
+		heart.addEventListener("click", heartCheck);
 		
-		function clickHeart() {
-			let frm = document.getElementById("frm");
-		    if(heart.value == "찜하기") {
-				heart.value = "찜취소";
-				frm.action="addHeart.do";
-		    } else {
-		    	heart.value ="찜하기";
-		    	frm.action="deleteHeart.do";
-		    }
-		    frm.submit();
+// 		function clickHeart() {
+// 			let frm = document.getElementById("frm");
+// 		    if(heart.value == "찜하기") {
+// 				heart.value = "찜취소";
+// 				frm.action="addHeart.do";
+// 		    } else {
+// 		    	heart.value ="찜하기";
+// 		    	frm.action="deleteHeart.do";
+// 		    }
+// 		    frm.submit();
+// 		}
+
+		function heartCheck(){
+			let id = '<%=(String)session.getAttribute("id")%>';; 
+			let productId = ${product.productId}
+			let url = "ajaxHeart.do?id=" + id + "&productId=" + productId  ;			
+			fetch(url)   
+				.then(response => response.text())	
+				.then(text => htmlProcess(text));
 		}
+		
+  		function htmlProcess(data){
+  			let frm = document.getElementById("frm");
+			if(data == 'Heart'){
+				alert("관심 상품이 등록되었습니다.");
+				heart.value = "찜취소";
+// 				frm.action="addHeart.do";	
+				
+			}else{
+				alert("관심 상품이 해제되었습니다.")
+				heart.value ="찜하기";
+// 		    	frm.action="deleteHeart.do";
+				
+			}
+			frm.submit();
+		}
+  		
+  		
+
 		
 	
 		
@@ -214,6 +243,9 @@
 			frm.submit();
 		}
   		
+  		
+  		
+  	
 
   		
   		

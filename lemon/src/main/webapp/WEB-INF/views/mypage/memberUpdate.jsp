@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link href="../../css/board.css" rel="stylesheet">
+<link href="css/board.css" rel="stylesheet">
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>

@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link href="../../css/board.css" rel="stylesheet">
+<link href="css/board.css" rel="stylesheet">
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
@@ -29,6 +29,7 @@
 				<h3>최근 본 상품</h3>
 			</div>
 		</div>
+		
 		<div id="box">
 			<div>
 				<jsp:include page="mypageMenu.jsp"></jsp:include>
@@ -38,9 +39,9 @@
 				<div class="container">
 					<form id="frm" method="post">
 						<c:forEach items="${recentList}" var="r">				
-							<div>
-								<div><img src="">이미지</div>
-								<div><p><a href="#">${r.productTitle}</a></p></div>
+							<div align="center">
+								<div class='myDiv' onclick='productChoice(${r.productId})'><img src="https://via.placeholder.com/120x120"></div>
+								<div class='myDiv' onclick='productChoice(${r.productId})'>${r.productTitle}</div>
 								<div><button id="deleteRecent" onclick="fnDelete()">삭제</button></div>
 								<input type="hidden" name="productId" value="${r.productId}" >
 							</div>				
@@ -53,6 +54,10 @@
 				</div>
 			</div>
 		</div>
+		
+		<div>
+			<jsp:include page="clickProductSelect.jsp"></jsp:include>
+		</div> 
 	</section>
 
 	<script type="text/javascript">
