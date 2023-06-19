@@ -17,10 +17,14 @@ public interface MypageMapper {
 	//판매 내역 검색
 	List<MypageVO> sellSelect(@Param("memberName") String name, @Param("productSearch")String search, @Param("page") int page);
 	
+	//판매 내역 검색 카운트용
+	List<MypageVO> sellSelectCount(@Param("memberName") String name, @Param("productSearch")String search);
+	
 	//찜한 상품
 	List<MypageVO> heartSelectList(String id);
 	
 	//최근 본 상품
 	MypageVO recentSelectList(int no);
+	
 	
 }

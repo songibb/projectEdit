@@ -17,8 +17,6 @@ table input{
 #updateButton{
 	float: right;
 }
-
-
 </style>
 </head>
 <body>

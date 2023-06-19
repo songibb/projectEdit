@@ -41,7 +41,13 @@
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
+	font-weight: bold;
 }
+
+.info a{
+	
+}
+
 
 .search-wrap .update a{
 	display: inline-block;
@@ -52,6 +58,11 @@
     color: #fff;
     border-radius: 30px;
     text-align: center;
+}
+
+.grade p{
+	margin:0;
+	font-size:12px
 }
 
 </style>
@@ -82,28 +93,36 @@
 									</span>
 									<div class="info">
 										<span>${name}</span>
-										<c:choose>						
-											<c:when test="${grade eq 'N'}">
+										<div>
+											<c:if test="${grade eq 'N'}">
 												<a href="#">신규 회원</a>
-											</c:when>
-											<c:when test="${grade eq 'R'}">
+											</c:if>
+											<c:if test="${grade eq 'R'}">
 												<a href="#">일반 회원</a>
-											</c:when>
-											<c:when test="${grade eq 'V'}">
+											</c:if>
+											<c:if test="${grade eq 'V'}">
 												<a href="#">VIP</a>
-											</c:when>
-											<c:when test="${grade eq 'VV'}">
+											</c:if>
+											<c:if test="${grade eq 'VV'}">
 												<a href="#">VVIP</a>
-											</c:when>
-										</c:choose>
+											</c:if>
+											<c:if test="${grade eq 'T'}">
+												<a href="#" style="color: #ff0000;">경고 회원</a>
+											</c:if>
+										</div>
 									</div>
 								</div>							
 								
 								<div class="update">
 									<a href="memberUpdateForm.do">회원정보수정</a>
 								</div>
+	
 							</div>
 							
+							<div class="grade" style="padding-left: 20px;margin-top: 20px;">
+								<p style="font-weight: bold;" >회원등급 안내</p>
+								<p>판매건수 - 1건: 일반회원 / 10건: VIP / 100건: VVIP</p>
+							</div>
 							
 						</div>
 						
@@ -130,7 +149,40 @@
 		
 		<div>
 			<jsp:include page="clickProductSelect.jsp"></jsp:include>
-		</div> 
+		</div>
+		
+		<script>
+			//document.frm.submit();
+			window.onload = updateGrade();
+			
+			function updateGrade(){
+				
+			}
+			
+			function heartCheck(){
+				let id = '<%=(String)session.getAttribute("id")%>';; 
+				let productId = ${product.productId}
+				let url = "ajaxHeart.do?id=" + id + "&productId=" + productId  ;			
+				fetch(url)   
+					.then(response => response.text())	
+					.then(text => htmlProcess(text));
+			}
+			
+	  		function htmlProcess(data){
+	  			let frm = document.getElementById("frm");
+				if(data == 'Heart'){
+					alert("관심 상품이 등록되었습니다.");
+					heart.value = "찜취소";
+//	 				frm.action="addHeart.do";	
+					
+				}else{
+					alert("관심 상품이 해제되었습니다.")
+					heart.value ="찜하기";
+//	 		    	frm.action="deleteHeart.do";
+					
+				}
+			}
+		</script> 
 	</section>
 
 </body>

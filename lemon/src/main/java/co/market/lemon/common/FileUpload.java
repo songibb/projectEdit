@@ -13,7 +13,9 @@ import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
 public class FileUpload {
-private int maxSize=10*1024*1024;
+
+private int maxSize = 10 * 1024 * 1024;
+
 //저장공간을 넘겨주면 파일을 저장하고, 필드값을 리턴한다.
 public HashMap<String, String> upload(HttpServletRequest request, HttpServletResponse response, String dir){
 	HashMap<String, String> map = new HashMap<String, String>();

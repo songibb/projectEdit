@@ -16,11 +16,12 @@ public class MypageVO {
 	private String productTitle;
 	private String productState;
 	private Date productWdate;
-	
+	private String productInfo;
 	
 	//찜한 상품
 	private String memberId;
-	private String productInfo;
+	
+	
 	
 
 	

@@ -53,7 +53,7 @@
 									required="required"></textarea>
 						</tr>
 						<tr>
-							<th align="center">* 사진첨부</th>
+							<th align="center"> 사진첨부</th>
 							<td><input type="file" id="pfile" name="pfile" accept="image/*">
 						</tr>
 					</table>

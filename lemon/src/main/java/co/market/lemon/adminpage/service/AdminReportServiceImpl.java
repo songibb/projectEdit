@@ -36,4 +36,29 @@ public class AdminReportServiceImpl implements AdminReportService{
 		return map.reportDelete(vo);
 	}
 
+	@Override
+	public int reportAllDelete(AdminReportVO vo) {
+		
+		return map.reportAllDelete(vo);
+	}
+
+	
+	
+	//페이징 처리 관련
+	
+	
+	@Override
+	public int selectReportTotal(AdminReportVO vo) {
+		
+		return map.selectReportTotal(vo);
+	}
+
+	@Override
+	public List<AdminReportVO> selectmemberPageList(AdminReportVO vo) {
+		
+		return map.selectmemberPageList(vo);
+	}
+
+
+
 }

@@ -25,6 +25,17 @@
 		VALUES (#{memberId}, #{memberPw}, #{memberName}, #{memberTel}, 'N', 0)
 	</insert>
 	
+<!-- 	네이버api -->
+
+
+	
+<!-- MEMBER_ID    NOT NULL VARCHAR2(50)   -->
+<!-- MEMBER_PW    NOT NULL VARCHAR2(256)  -->
+<!-- MEMBER_NAME  NOT NULL VARCHAR2(30)   -->
+<!-- MEMBER_TEL   NOT NULL VARCHAR2(20)   -->
+<!-- MEMBER_GRADE NOT NULL VARCHAR2(10)   -->
+<!-- MEMBER_COUNT          NUMBER     -->
+	
 	<update id="memberUpdate" parameterType="co.market.lemon.member.service.MemberVO">	
 		UPDATE MEMBER
 		SET MEMBER_PW = #{memberPw}, MEMBER_TEL = #{memberTel}
@@ -40,4 +51,69 @@
 		SELECT * FROM MEMBER
 		WHERE MEMBER_ID = #{memberId} AND MEMBER_PW = #{memberPw}
 	</select>
+	
+	
+	
+	<delete id="memberDeleteName" parameterType="co.market.lemon.member.service.MemberVO">
+		DELETE FROM MEMBER
+		WHERE MEMBER_NAME = #{memberName}
+	</delete>
+	
+		<update id="memberGradeUpdate"
+		parameterType="co.market.lemon.member.service.MemberVO">
+		UPDATE MEMBER
+		SET MEMBER_GRADE ='T', MEMBER_COUNT= MEMBER_COUNT+1
+		WHERE MEMBER_NAME = #{memberName}
+	</update>
+	
+	<select id="selectMemberTotal" resultType="int">
+	SELECT COUNT(*) total FROM MEMBER
+	</select>
+	
+	
+	<select id="selectMemberListPaging" resultType="co.market.lemon.member.service.MemberVO">
+		<![CDATA[
+		select b.* from(
+			select rownum rn, a.* from (
+				select * 
+					from member
+					order by member_id ) a ) b
+					
+					where rn >= #{startIndex} and rn <= #{endIndex}
+	]]>
+	</select>
+	
+	<!-- 회원 등급 조정 -->
+	<select id="sellTotalCount" resultType="int">
+		SELECT COUNT(*)
+		  FROM PRODUCT
+		 WHERE PRODUCT_WRITER = #{memberName} AND PRODUCT_INFO='팝니다'
+	</select>
+	
+	<update id="updateGradeR" >
+ 		UPDATE MEMBER
+ 		   SET MEMBER_GRADE = 'R'
+ 		 WHERE MEMBER_NAME = #{memberName} AND NOT MEMBER_GRADE IN 'R'
+	</update>
+	
+	<update id="updateGradeV" >
+ 		UPDATE MEMBER
+ 		   SET MEMBER_GRADE = 'V'
+ 		 WHERE MEMBER_NAME = #{memberName} AND NOT MEMBER_GRADE IN 'V'
+	</update>
+	
+	<update id="updateGradeVV" >
+ 		UPDATE MEMBER
+ 		   SET MEMBER_GRADE = 'VV'
+ 		 WHERE MEMBER_NAME = #{memberName} AND NOT MEMBER_GRADE IN 'VV'
+	</update>
+	
+	
+	<!-- 탈퇴시 비밀번호 확인용 -->
+	<select id="passwordCheck" resultType="String" parameterType="String">
+		SELECT MEMBER_PW
+		  FROM MEMBER
+		 WHERE MEMBER_ID = #{value}
+	</select>
+	
 </mapper>
