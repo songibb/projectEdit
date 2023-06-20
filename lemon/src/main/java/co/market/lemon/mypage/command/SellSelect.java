@@ -46,15 +46,12 @@ public class SellSelect implements Command {
 			page = Integer.parseInt(page_);
 		} 
 		
-		System.out.println(productSearch);
 
 		sellList = ms.sellSelect(memberName, productSearch, page);
 		request.setAttribute("sellList", sellList);	
-		System.out.println(sellList.size());
-		
+
 		sellList2 = ms.sellSelectCount(memberName, productSearch);
 		request.setAttribute("sellList2", sellList2);	
-		System.out.println(sellList2.size());
 
 		return "mypage/sellSelectList";
 	}

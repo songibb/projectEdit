@@ -30,8 +30,13 @@ public class ProductVO {
 	private Date productWdate;
 	private int productView;
 	private String productState;
-	private String productImg;
-	private String productImgDir;
+	private String productImg1;
+	private String productImgDir1;
 	private String productBuyer;
+
+	// 페이징 처리
+	public int viewPage = 1;
+	public int startIndex = 1;
+	public int endIndex = 5;
 
 }

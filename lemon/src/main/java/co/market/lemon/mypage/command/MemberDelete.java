@@ -47,14 +47,11 @@ public class MemberDelete implements Command {
 		while(true) {
 			if(mvo.getMemberPw().equals(originPw)) {
 				//회원이 쓴 게시글 삭제
-				ps.productNameDelete(pvo);
-				
+				ps.productNameDelete(pvo);				
 				//회원이 쓴 댓글 삭제
 				rs.replyNameDelete(rvo);
-
 				//회원 삭제
-				n = ms.memberDelete(mvo);
-				
+				n = ms.memberDelete(mvo);				
 				break;
 			} else {	
 				try {
@@ -65,8 +62,7 @@ public class MemberDelete implements Command {
 					out.close();
 				} catch (IOException e) {
 					e.printStackTrace();
-				}
-				
+				}	
 			}
 		}
 		

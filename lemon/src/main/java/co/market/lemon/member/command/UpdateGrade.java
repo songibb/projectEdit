@@ -19,21 +19,30 @@ public class UpdateGrade implements Command {
 		HttpSession session = request.getSession();
 		
 		vo.setMemberName((String) session.getAttribute("name"));		
+		vo.setMemberId((String) session.getAttribute("id"));
+
 		
-		
-		int totalCount = ms.sellTotalCount(vo);
+		int sTotalCount = ms.sellTotalCount(vo);
+		int bTotalCount = ms.buyTotalCount(vo);
 		
 		int n=0;
-		if(totalCount>=1 && totalCount<10) {
-			n = ms.updateGradeR(vo);
-		} else if(totalCount>=10 && totalCount<100) {
-			n = ms.updateGradeV(vo);
-		} else if(totalCount>=100) {
+		if(sTotalCount>=100 && bTotalCount>=100) {
 			n = ms.updateGradeVV(vo);
+			vo = ms.memberSelect(vo);
+		} else if(sTotalCount>=10 && bTotalCount>=5) {
+			n = ms.updateGradeV(vo);
+			vo = ms.memberSelect(vo);
+		} else if(sTotalCount>=1) {
+			n = ms.updateGradeR(vo);
+			vo = ms.memberSelect(vo);
 		}
-
+		
 		if(n != 0) {
-			System.out.println("등급 변경 완료. 로그아웃후 다시 로그인시 마이페이지에서 확인 가능");
+			session.setAttribute("id", vo.getMemberId());
+			session.setAttribute("name", vo.getMemberName());
+			session.setAttribute("grade", vo.getMemberGrade());
+			session.setAttribute("pw", vo.getMemberPw());
+			session.setAttribute("tel", vo.getMemberTel());
 		}
 		return "mypage.do";
 	}
